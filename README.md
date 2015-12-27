@@ -18,3 +18,9 @@ This small repo is an AMP-Stack for Vagrant, with the following specification:
 - Git
 - NodeJS
 - Gulp
+
+## How to improve
+1. Make changes to source
+2. Change version in `template.json` for each provider image
+3. Push with `git push`
+4. Push with `packger push -name chrisandchris/amp template.json` 
