@@ -3,7 +3,10 @@
 Usage:
 
 ```
-vagrant init chrisandchris/amp
+# There's no VirtualBox Guest Addition installed, let's do that by a plugin
+vagrant plugin install vagrant-vbguest
+# Now load and start the image
+vagrant init chrisandchris/amp && vagrant up
 ```
 
 See: https://atlas.hashicorp.com/chrisandchris/boxes/amp
@@ -11,7 +14,7 @@ See: https://atlas.hashicorp.com/chrisandchris/boxes/amp
 ## Specification
 This small repo is an AMP-Stack for Vagrant, with the following specification:
 
-- Apache 2.2
+- Apache 2.4
 - PHP from *ppa:ondrej/php5-5.6* with extensions
     - CURL, GD, MCRYPT, MySQL, xDebug
     - extensive error reporting
@@ -33,4 +36,4 @@ This small repo is an AMP-Stack for Vagrant, with the following specification:
 1. Make changes to source
 2. Change version in `template.json` for each provider image
 3. Push with `git push`
-4. Push with `packger push -name chrisandchris/amp template.json` 
+4. Push with `packer push -name chrisandchris/amp template.json` 

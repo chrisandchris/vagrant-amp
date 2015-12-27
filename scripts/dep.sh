@@ -5,12 +5,12 @@
 echo "--- Let's get to work. Installing now. ---"
 
 echo "--- Updating packages list ---"
-apt-get update
+apt-get update && apt-get dist-upgrade -y
 
 echo "--- Installing base packages ---"
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-apt-get install -y vim curl python-software-properties dpkg-dev apache2 \
+apt-get install -y vim curl python-software-properties dpkg-dev \
     git-core mysql-server-5.5 python-software-properties software-properties-common
 
 curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -
@@ -24,14 +24,11 @@ sed -i 's/max_connections[ ]*= 100/max_connections = 1000/' /etc/mysql/my.cnf
 sed -i 's/\[mysqld\]/\[mysqld\]\nsql_mode = "NO_ENGINE_SUBSTITUTION,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ONLY_FULL_GROUP_BY"/' /etc/mysql/my.cnf
 service mysql restart
 
-echo "--- Installing PHP5.6 ---"
+echo "--- Installing PHP5.6 and Apache 2.4 ---"
 add-apt-repository -y ppa:ondrej/php5-5.6
 apt-get update
-apt-get install -y php5 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt \
-    php5-mysql php5-dev
-
-echo "--- Installing and configuring Xdebug ---"
-apt-get install -y php5-xdebug
+apt-get install -y php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt \
+    php5-mysql php5-dev php5-xdebug
 
 echo "-- Configure xdebug --"
 echo "xdebug.remote_enable=1
@@ -80,5 +77,9 @@ echo "alias phpunitx=\"./vendor/phpunit/phpunit/phpunit  -dxdebug.remote_host=10
 echo "alias phpunit=\"./vendor/phpunit/phpunit/phpunit\"" >> /home/vagrant/.bash_profile
 echo "alias ll=\"ls -al\"" >> /home/vagrant/.bash_profile
 echo "export XDEBUG_CONFIG=\"idekey=vagrant\"" >> /home/vagrant/.bash_profile
+
+echo "--- Updating again everything, set hostname ---"
+apt-get update && apt-get dist-upgrade -y
+echo "amp" >> /etc/hostname
 
 echo "--- All done, enjoy! :) ---"
