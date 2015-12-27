@@ -1,4 +1,14 @@
 # AMP-Stack for Vagrant
+
+Usage:
+
+```
+vagrant init chrisandchris/amp
+```
+
+See: https://atlas.hashicorp.com/chrisandchris/boxes/amp
+
+## Specification
 This small repo is an AMP-Stack for Vagrant, with the following specification:
 
 - Apache 2.2
