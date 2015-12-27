@@ -24,8 +24,8 @@ sed -i 's/max_connections[ ]*= 100/max_connections = 1000/' /etc/mysql/my.cnf
 sed -i 's/\[mysqld\]/\[mysqld\]\nsql_mode = "NO_ENGINE_SUBSTITUTION,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ONLY_FULL_GROUP_BY"/' /etc/mysql/my.cnf
 service mysql restart
 
-echo "--- Installing PHP5 (latest) ---"
-add-apt-repository -y ppa:ondrej/php5
+echo "--- Installing PHP5.6 ---"
+add-apt-repository -y ppa:ondrej/php5-5.6
 apt-get update
 apt-get install -y php5 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt \
     php5-mysql php5-dev
