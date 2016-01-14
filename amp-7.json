@@ -4,8 +4,8 @@
       "vcs": true
     },
     "variables": {
-        "atlas_username": "{{env `ATLAS_USERNAME`}}",
-        "atlas_name": "amp"
+        "atlas_username": "chrisandchris",
+        "atlas_name": "amp7"
     },
     "provisioners": [
         {
