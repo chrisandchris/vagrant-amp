@@ -38,11 +38,11 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key a
 apt-get update && apt-get dist-upgrade -y
 apt-get -y install postgresql-9.4
 
-echo "--- Installing PHP5.6 and Apache 2.4 ---"
-add-apt-repository -y ppa:ondrej/php5-5.6
+echo "--- Installing PHP7 and Apache 2.4 ---"
+add-apt-repository -y ppa:ondrej/php-7.0
 apt-get update
-apt-get install -y php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt \
-    php5-mysql php5-dev php5-xdebug php5-apcu
+apt-get install -y apache2 php7.0 php7.0-dev php7.0-curl php7.0-opcache php7.0-json php7.0-mcrypt php7.0-pgsql php7.0-gd \
+    libapache2-mod-php7.0 php7.0-sqlite php-xdebug
 
 echo "-- Configure xdebug --"
 echo "xdebug.remote_enable=1
