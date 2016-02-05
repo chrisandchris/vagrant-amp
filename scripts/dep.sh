@@ -46,7 +46,7 @@ apt-get install -y php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcryp
 
 echo "-- Configure xdebug --"
 echo "xdebug.remote_enable=1
-xdebug.profiler_enable=1
+xdebug.profiler_enable=0
 xdebug.remote_connect_back=1
 xdebug.remote_port=9000
 xdebug.remote_log=/tmp/php5-xdebug.log

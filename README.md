@@ -36,6 +36,15 @@ This small repo is an AMP-Stack for Vagrant, with the following specification:
 - NodeJS
 - Gulp
 
+# Changelog
+## Amp7
+### 2.0.1
+- xDebug: Disabled profiler by default
+
+## Amp5.6
+### 2.0.4
+- xDebug: Disabled profiler by default
+
 ## How to improve
 1. Make changes to source
 2. Change version in `template.json` for each provider image
