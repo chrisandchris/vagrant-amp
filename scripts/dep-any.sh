@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #!/bin/bash
 #
 # Setup the the box. This runs as root
@@ -38,11 +40,11 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key a
 apt-get update && apt-get dist-upgrade -y
 apt-get -y install postgresql-9.4
 
-echo "--- Installing PHP5.6 and Apache 2.4 ---"
-add-apt-repository -y ppa:ondrej/php5-5.6
+echo "--- Installing PHP7 and Apache 2.4 ---"
+add-apt-repository -y ppa:ondrej/php-7.0
 apt-get update
-apt-get install -y php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt \
-    php5-mysql php5-dev php5-xdebug php5-apcu
+apt-get install -y apache2 php7.0 php7.0-dev php7.0-curl php7.0-opcache php7.0-json php7.0-mcrypt php7.0-pgsql php7.0-gd \
+    libapache2-mod-php7.0 php7.0-sqlite php-xdebug
 
 echo "-- Configure xdebug --"
 echo "xdebug.remote_enable=1
@@ -85,10 +87,15 @@ curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
 echo "--- Installing aliases & default config ---"
-etecho "alias phpunitx=\"./vendor/phpunit/phpunit/phpunit  -dxdebug.remote_host=10.211.55.2 -dxdebug.remote_autostart=1\"" >> /home/vagrant/.bash_profile
+echo "alias phpunitx=\"./vendor/phpunit/phpunit/phpunit  -dxdebug.remote_host=10.211.55.2 -dxdebug.remote_autostart=1\"" >> /home/vagrant/.bash_profile
 echo "alias phpunit=\"./vendor/phpunit/phpunit/phpunit\"" >> /home/vagrant/.bash_profile
 echo "alias ll=\"ls -al\"" >> /home/vagrant/.bash_profile
 echo "export XDEBUG_CONFIG=\"idekey=vagrant\"" >> /home/vagrant/.bash_profile
+echo "EOF
+    mkdir -p /vagrant/.sql_dumps
+    mysql -uroot -proot -N -e 'show databases;' | while read dbname; do mysqldump -uroot -proot --complete-insert "$dbname" > "/vagrant/.sql_dumps/$dbname".sql; done" >> /home/vagrant/backup_databases.sh
+ln -s /home/vagrant/backup_databases.sh /etc/rc0.d/backup_databases.sh
+ln -s /home/vagrant/backup_databases.sh /etc/rc6.d/backup_databases.sh
 
 echo "--- Updating again everything, set hostname ---"
 apt-get update && apt-get dist-upgrade -y

@@ -14,7 +14,8 @@
                 "scripts/base.sh",
                 "scripts/virtualbox.sh",
                 "scripts/vagrant.sh",
-                "scripts/dep.sh",
+                "scripts/dep-5.6.sh",
+                "scripts/dep-any.sh",
                 "scripts/cleanup.sh",
                 "scripts/zerodisk.sh"
             ],
