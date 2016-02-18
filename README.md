@@ -38,12 +38,20 @@ This small repo is an AMP-Stack for Vagrant, with the following specification:
 
 # Changelog
 ## Amp7
-### 2.0.1
+### 1.0.1
 - xDebug: Disabled profiler by default
+### v1.0.2
+- has been revoked
+### v1.0.3
+- fixed issues from v1.0.2
 
 ## Amp5.6
-### 2.0.4
+### 1.0.4
 - xDebug: Disabled profiler by default
+### v1.0.5
+- has been revoked
+### v1.0.6
+- fixed issues from v1.0.5
 
 ## How to improve
 1. Make changes to source
