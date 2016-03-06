@@ -1,6 +1,6 @@
 # AMP-Stack for Vagrant
 
-Usage:
+##  Usage
 
 ```
 # There's no VirtualBox Guest Addition installed, let's do that by a plugin
@@ -12,6 +12,10 @@ vagrant init chrisandchris/amp7 && vagrant up
 ```
 
 See: https://atlas.hashicorp.com/chrisandchris/boxes/amp
+And: https://atlas.hashicorp.com/chrisandchris/boxes/amp7
+
+## Developers note
+If you have any input, any issue or whatever, do not hesitate to write me.
 
 ## Specification
 This small repo is an AMP-Stack for Vagrant, with the following specification:
@@ -38,20 +42,30 @@ This small repo is an AMP-Stack for Vagrant, with the following specification:
 
 # Changelog
 ## Amp7
-### 1.0.1
-- xDebug: Disabled profiler by default
-### v1.0.2
-- has been revoked
 ### v1.0.3
+- split deps up in before, custom, after
+- fixed small issues in scripts
 - fixed issues from v1.0.2
 
-## Amp5.6
-### 1.0.4
-- xDebug: Disabled profiler by default
-### v1.0.5
+### v1.0.2
 - has been revoked
+
+### 1.0.1
+- xDebug: Disabled profiler by default
+
+## Amp5.6
+### v1.0.7
+- split deps up in before, custom, after
+- fixed issue with wrong php version in 1.0.6 (now has 5.6.x)
+
 ### v1.0.6
 - fixed issues from v1.0.5
+
+### v1.0.5
+- has been revoked
+
+### 1.0.4
+- xDebug: Disabled profiler by default
 
 ## How to improve
 1. Make changes to source
