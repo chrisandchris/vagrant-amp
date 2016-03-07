@@ -24,6 +24,29 @@ echo "Listen 8000" >> /etc/apache2/ports.conf
 cp /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default-8000.conf
 sed -i 's/<VirtualHost *:80>/<VirtualHost *:8000>/' /etc/apache2/sites-enabled/000-default-8000.conf
 
+echo "--- Generating and installing ssl certificate cron script ---"
+(crontab -l 2>/dev/null; echo "@reboot /home/vagrant/install_cert.sh ") | crontab -
+cat <<EOF >> /home/vagrant/install_cert.sh
+if [ -f /etc/ssl/vagrant/vagrant.key ]; then
+    exit
+fi
+sudo mkdir -p /etc/ssl/vagrant/
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/ssl/vagrant/vagrant.key \
+    -out /etc/ssl/vagrant/vagrant.crt \
+    -subj "/C=CH/ST=Zurich/L=Zurich/O=Your Dev-Env/OU=A vagrant box/CN=172.28.128.3"
+sudo a2enmod ssl
+cat <<< '<VirtualHost *:443>
+    DocumentRoot /vagrant
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/vagrant/vagrant.crt
+    SSLCertificateKeyFile /etc/ssl/vagrant/vagrant.key
+</VirtualHost>
+' > /etc/apache2/sites-enabled/000-default-443.conf
+sudo service apache2 restart
+EOF
+chmod +x /home/vagrant/install_cert.sh
+
 echo "--- Restarting Apache ---"
 service apache2 restart
 
