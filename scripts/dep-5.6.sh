@@ -6,6 +6,9 @@ apt-get update
 apt-get install -y php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt \
     php5-mysql php5-dev php5-xdebug
 
+sed -i "s/;date.timezone =/date.timezone = Europe\/Zurich/" /etc/php/apache2/php.ini
+sed -i "s/;date.timezone =/date.timezone = Europe\/Zurich/" /etc/php/cli/php.ini
+
 echo "-- Configure xdebug --"
 echo "xdebug.remote_enable=1
 xdebug.profiler_enable=0
