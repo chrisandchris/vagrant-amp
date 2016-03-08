@@ -54,19 +54,29 @@ echo "--- Install Composer (PHP package manager) ---"
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
-echo "--- Installing aliases & default config ---"
-echo "alias phpunitx=\"./vendor/phpunit/phpunit/phpunit  -dxdebug.remote_host=10.211.55.2 -dxdebug.remote_autostart=1\"" >> /home/vagrant/.bash_profile
-echo "alias phpunit=\"./vendor/phpunit/phpunit/phpunit\"" >> /home/vagrant/.bash_profile
-echo "alias ll=\"ls -al\"" >> /home/vagrant/.bash_profile
-echo "export XDEBUG_CONFIG=\"idekey=vagrant\"" >> /home/vagrant/.bash_profile
-echo "EOF
-    mkdir -p /vagrant/.sql_dumps
-    mysql -uroot -proot -N -e 'show databases;' | while read dbname; do mysqldump -uroot -proot --complete-insert "$dbname" > "/vagrant/.sql_dumps/$dbname".sql; done" >> /home/vagrant/backup_databases.sh
-ln -s /home/vagrant/backup_databases.sh /etc/rc0.d/backup_databases.sh
-ln -s /home/vagrant/backup_databases.sh /etc/rc6.d/backup_databases.sh
+echo "--- Installing aliases, default config, and some tools ---"
+# aliases
+echo << EOF >> /home/vagrant/.bash_profile
+alias phpunitx="./vendor/phpunit/phpunit/phpunit  -dxdebug.remote_host=10.211.55.2 -dxdebug.remote_autostart=1"
+alias phpunit="./vendor/phpunit/phpunit/phpunit"
+alias ll="ls -al"
+export XDEBUG_CONFIG="idekey=vagrant"
+EOF
+# mysql backup script
+cat << EOF > /home/vagrant/backup_mysql.sh
+#!/usr/bin/env bash
+
+mkdir -p /vagrant/.sql_dumps
+mysql -uroot -proot -N -e 'show databases;' | while read dbname; do mysqldump -uroot -proot --complete-insert "$dbname" > "/vagrant/.sql_dumps/$dbname".sql; done"
+EOF
+cat << EOF > /etc/init/mysql.conf
+pre-stop script
+    /home/vagrant/backup_mysql.sh
+end script
+EOF
 
 echo "--- Updating again everything, set hostname ---"
 apt-get update && apt-get dist-upgrade -y
-echo "amp" >> /etc/hostname
+echo "amp" > /etc/hostname
 
 echo "--- All done, enjoy! :) ---"
