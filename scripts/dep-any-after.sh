@@ -69,7 +69,7 @@ cat << EOF > /home/vagrant/backup_mysql.sh
 mkdir -p /vagrant/.sql_dumps
 mysql -uroot -proot -N -e 'show databases;' | while read dbname; do mysqldump -uroot -proot --complete-insert "$dbname" > "/vagrant/.sql_dumps/$dbname".sql; done"
 EOF
-cat << EOF > /etc/init/mysql.conf
+cat << EOF >> /etc/init/mysql.conf
 pre-stop script
     /home/vagrant/backup_mysql.sh
 end script
