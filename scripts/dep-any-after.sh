@@ -36,13 +36,14 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -out /etc/ssl/vagrant/vagrant.crt \
     -subj "/C=CH/ST=Zurich/L=Zurich/O=Your Dev-Env/OU=A vagrant box/CN=172.28.128.3"
 sudo a2enmod ssl
-cat <<< '<VirtualHost *:443>
-    DocumentRoot /vagrant
+cat <<-EOG  > /etc/apache2/sites-enabled/000-default-443.conf
+<VirtualHost *:443>
+    DocumentRoot /var/www/html
     SSLEngine on
     SSLCertificateFile /etc/ssl/vagrant/vagrant.crt
     SSLCertificateKeyFile /etc/ssl/vagrant/vagrant.key
 </VirtualHost>
-' > /etc/apache2/sites-enabled/000-default-443.conf
+EOG
 sudo service apache2 restart
 EOF
 chmod +x /home/vagrant/install_cert.sh
@@ -61,22 +62,31 @@ alias phpunitx="./vendor/phpunit/phpunit/phpunit  -dxdebug.remote_host=10.211.55
 alias phpunit="./vendor/phpunit/phpunit/phpunit"
 alias ll="ls -al"
 export XDEBUG_CONFIG="idekey=vagrant"
+
 EOF
 # mysql backup script
 cat << EOF > /home/vagrant/backup_mysql.sh
 #!/usr/bin/env bash
 
 mkdir -p /vagrant/.sql_dumps
-mysql -uroot -proot -N -e 'show databases;' | while read dbname; do mysqldump -uroot -proot --complete-insert "$dbname" > "/vagrant/.sql_dumps/$dbname".sql; done"
+mysql -uroot -proot -N -e 'show databases;' | while read dbname; do mysqldump -uroot -proot --complete-insert $dbname > /vagrant/.sql_dumps/${dbname}.sql; done
+
 EOF
+chhmod +x /home/vagrant/backup_mysql.sh
 cat << EOF >> /etc/init/mysql.conf
+
 pre-stop script
     /home/vagrant/backup_mysql.sh
 end script
+
 EOF
 
 echo "--- Updating again everything, set hostname ---"
 apt-get update && apt-get dist-upgrade -y
 echo "amp" > /etc/hostname
+sed -i.old '/^.*packer.*$/d' /etc/hosts
+echo << EOF >> /etc/hosts
+127.0.1.1   amp
+EOF
 
 echo "--- All done, enjoy! :) ---"
