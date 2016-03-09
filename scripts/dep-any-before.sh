@@ -23,6 +23,7 @@ sed -i 's/max_connections[ ]*= 100/max_connections = 1000/' /etc/mysql/my.cnf
 sed -i 's/\[mysqld\]/\[mysqld\]\nsql_mode = "NO_ENGINE_SUBSTITUTION,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ONLY_FULL_GROUP_BY"/' /etc/mysql/my.cnf
 sed -i "s/bind-address.*=.*127.0.0.1/bind-address=0.0.0.0/g" /etc/mysql/my.cnf
 service mysql restart
+# allows connections from everywhere
 mysql -uroot -proot << EOF
     USE mysql;
     UPDATE `user` SET Host = '%' WHERE Host = '::1';
