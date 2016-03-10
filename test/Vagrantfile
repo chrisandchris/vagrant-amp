@@ -5,11 +5,11 @@ Vagrant.configure(2) do |config|
     config.vm.define "amp-7" do |amp7|
         amp7.vm.box = "tmp/amp-7"
         amp7.vm.network "private_network", type: "dhcp"
-        amp7.vm.synced_folder ".", "/vagrant"
+        amp7.vm.synced_folder ".", "/vagrant", type: "rsync"
     end
     config.vm.define "amp-5.6" do |amp|
         amp.vm.box = "tmp/amp-5.6"
         amp.vm.network "private_network", type: "dhcp"
-        amp.vm.synced_folder ".", "/vagrant"
+        amp.vm.synced_folder ".", "/vagrant", type: "rsync"
     end
 end

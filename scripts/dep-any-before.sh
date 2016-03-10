@@ -26,7 +26,7 @@ service mysql restart
 # allows connections from everywhere
 mysql -uroot -proot << EOF
     USE mysql;
-    UPDATE `user` SET Host = '%' WHERE Host = '::1';
+    UPDATE user SET Host = '%' WHERE Host = '::1';
     FLUSH PRIVILEGES;
 EOF
 
