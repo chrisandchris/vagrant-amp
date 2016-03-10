@@ -1,2 +1,5 @@
 *.box
 test/.vagrant
+output-virtualbox-iso/
+packer_cache/
+

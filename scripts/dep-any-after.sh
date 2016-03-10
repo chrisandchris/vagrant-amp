@@ -57,7 +57,7 @@ mv composer.phar /usr/local/bin/composer
 
 echo "--- Installing aliases, default config, and some tools ---"
 # aliases
-echo << EOF >> /home/vagrant/.bash_profile
+cat << EOF >> /home/vagrant/.bash_profile
 alias phpunitx="./vendor/phpunit/phpunit/phpunit  -dxdebug.remote_host=10.211.55.2 -dxdebug.remote_autostart=1"
 alias phpunit="./vendor/phpunit/phpunit/phpunit"
 alias ll="ls -al"
@@ -69,10 +69,9 @@ cat << EOF > /home/vagrant/backup_mysql.sh
 #!/usr/bin/env bash
 
 mkdir -p /vagrant/.sql_dumps
-mysql -uroot -proot -N -e 'show databases;' | while read dbname; do mysqldump -uroot -proot --complete-insert $dbname > /vagrant/.sql_dumps/${dbname}.sql; done
-
+mysql -uroot -proot -N -e 'show databases;' | while read dbname; do mysqldump -uroot -proot --databases \$dbname --complete-insert  > /vagrant/.sql_dumps/\${dbname}.sql; done
 EOF
-chhmod +x /home/vagrant/backup_mysql.sh
+chmod +x /home/vagrant/backup_mysql.sh
 cat << EOF >> /etc/init/mysql.conf
 
 pre-stop script
@@ -83,9 +82,9 @@ EOF
 
 echo "--- Updating again everything, set hostname ---"
 apt-get update && apt-get dist-upgrade -y
-echo "amp" > /etc/hostname
+cat "amp" > /etc/hostname
 sed -i.old '/^.*packer.*$/d' /etc/hosts
-echo << EOF >> /etc/hosts
+cat << EOF >> /etc/hosts
 127.0.1.1   amp
 EOF
 
