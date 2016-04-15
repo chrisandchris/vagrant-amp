@@ -85,7 +85,7 @@ apt-get update && apt-get dist-upgrade -y
 cat "amp" > /etc/hostname
 sed -i.old '/^.*packer.*$/d' /etc/hosts
 cat << EOF >> /etc/hosts
-127.0.1.1   amp
+127.0.0.1   amp
 EOF
 
 echo "--- All done, enjoy! :) ---"
