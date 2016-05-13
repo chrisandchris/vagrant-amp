@@ -58,7 +58,9 @@ mv composer.phar /usr/local/bin/composer
 echo "--- Installing aliases, default config, and some tools ---"
 # aliases
 cat << EOF >> /home/vagrant/.bash_profile
-alias phpunitx="./vendor/phpunit/phpunit/phpunit  -dxdebug.remote_host=10.211.55.2 -dxdebug.remote_autostart=1"
+export HOST=$(echo `ifconfig eth0 2>/dev/null|awk '/inet addr:/ {print $2}'|sed 's/addr://'` | sed "s/\([0-9]\+\)\.\([0-9]\+\)\.\([0-9]\+\)\.\([0-9]\+\)/\1\.\2\.\3\.2/")
+alias phpx="php -dxdebug.remote_host=$HOST -dxdebug.remote_autostart=1"
+alias phpunitx="./vendor/phpunit/phpunit/phpunit  -dxdebug.remote_host=$HOST -dxdebug.remote_autostart=1"
 alias phpunit="./vendor/phpunit/phpunit/phpunit"
 alias ll="ls -al"
 export XDEBUG_CONFIG="idekey=vagrant"
@@ -85,7 +87,7 @@ apt-get update && apt-get dist-upgrade -y
 echo "amp" > /etc/hostname
 sed -i.old '/^.*packer.*$/d' /etc/hosts
 cat << EOF >> /etc/hosts
-127.0.1.1   amp
+127.0.0.1   amp
 EOF
 
 echo "--- All done, enjoy! :) ---"
