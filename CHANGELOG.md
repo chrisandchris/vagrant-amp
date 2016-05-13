@@ -1,5 +1,12 @@
 # Changelog
 ## Amp7
+
+## v3
+- improved xdebug handling, xdebug now gets its ip on its own
+
+## v2
+- new release with old stuff, now version number increases together with amp5.6
+
 ### v1.0.4
 - added mysql backup script
 - added self-signed cert for apache ssl (installs on boot if not yet done)
@@ -16,6 +23,13 @@
 - xDebug: Disabled profiler by default
 
 ## Amp5.6
+
+## v3
+- improved xdebug handling, xdebug now gets its ip on its own
+
+## v2
+- new release with old stuff, now version number increases together with amp7
+
 ### v1.0.8
 - added mysql backup script
 - added self-signed cert for apache ssl (installs on boot if not yet done)
