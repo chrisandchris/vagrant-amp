@@ -19,3 +19,11 @@ phpize
 make
 cp modules/xdebug.so /usr/lib/php/20151012
 echo "zend_extension = /usr/lib/php/20151012/xdebug.so" >> /etc/php/7.0/cli/php.ini
+echo "-- Configure xdebug --"
+echo "
+xdebug.remote_enable=1
+xdebug.profiler_enable=0
+xdebug.remote_connect_back=1
+xdebug.remote_port=9000
+xdebug.remote_log=/tmp/xdebug.log
+xdebug.max_nesting_level=512" >> /etc/php/7.0/cli/conf.d/20-xdebug.ini

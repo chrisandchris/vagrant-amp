@@ -11,9 +11,10 @@ sed -i "s/;date.timezone =/date.timezone = Europe\/Zurich/" /etc/php5/cli/php.in
 sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 64M/" /etc/php5/apache2/php.ini
 
 echo "-- Configure xdebug --"
-echo "xdebug.remote_enable=1
+echo "
+xdebug.remote_enable=1
 xdebug.profiler_enable=0
 xdebug.remote_connect_back=1
 xdebug.remote_port=9000
 xdebug.remote_log=/tmp/xdebug.log
-xdebug.max_nesting_level=512" >> /etc/php5/apache2/conf.d/xdebug.ini
+xdebug.max_nesting_level=512" >> /etc/php5/apache2/conf.d/20-xdebug.ini
