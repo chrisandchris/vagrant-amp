@@ -98,10 +98,22 @@
       },
       {
         "type": "atlas",
+        "only": ["virtualbox-iso"],
         "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
         "artifact_type": "vagrant.box",
         "metadata": {
-          "version": "4"
+          "version": "4",
+          "provider": "virtualbox"
+        }
+      },
+      {
+        "type": "atlas",
+        "only": ["qemu"],
+        "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+        "artifact_type": "vagrant.box",
+        "metadata": {
+          "version": "4",
+          "provider": "libvirt"
         }
       }
     ]
