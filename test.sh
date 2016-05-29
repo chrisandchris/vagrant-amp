@@ -9,24 +9,45 @@ if ! export | grep -Eq '^declare -x ATLAS_TOKEN=' ; then
     exit 1
 fi
 
-if ! command_exists packer; then
-    echo "Packer is not installed"
-    exit 1
-fi
-if ! command_exists vagrant; then
-    echo "Vagrant is not installed"
-    exit 1
-fi
-if ! command_exists virtualbox; then
-    echo "Virtualbox is not installed"
-    exit 1
-fi
+declare -a reqs=(
+    "packer"
+    "vagrant"
+    "virtualbox"
+    "libvirt"
+)
 
-rm -rf output-virtualbox-iso
-packer build "$1.json"
-vagrant box add packer_virtualbox-iso_virtualbox.box --name="tmp/$1" --force
-cd test
-rm -rf ./.sql_dumps
-vagrant destroy -f
-vagrant box update
-vagrant up $1
+for (( i = 0; i < ${#cmds[@]} ; i++ )); do
+    if ! command_exists ${cmds[$i]}; then
+        echo "Command not installed, aborting."
+        echo ${cmds[$i]}
+        exit 1
+    fi
+done
+
+declare -a cmds=(
+    "rm -rf output-virtualbox-iso"
+    "packer build -only=qemu \"$1.json\""
+    "vagrant box add packer_virtualbox-iso_virtualbox.box --name=\"tmp/$1\" --force"
+    "rm -rf packer_cache/*"
+    "rm -rf output-virtualbox-iso/*"
+    "cd test"
+    "rm -rf ./.sql_dumps"
+    "vagrant destroy -f"
+    "vagrant box update"
+    "vagrant up $1"
+)
+
+echo "Running commands in a row..."
+
+for (( i = 0; i < ${#cmds[@]} ; i++ )); do
+    printf "\n**** Running: ${cmds[$i]} *****\n\n"
+
+    if ! eval "${cmds[$i]}"; then
+        echo ""
+        echo "-------------------------"
+        echo "Command failed, aborting."
+        echo "${cmds[$i]}"
+        exit 1
+    fi
+done
+

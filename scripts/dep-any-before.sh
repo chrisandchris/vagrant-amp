@@ -3,8 +3,8 @@
 echo "--- Let's get to work. Installing now. ---"
 locale-gen
 
-echo "--- Updating packages list ---"
-apt-get update && apt-get dist-upgrade -y
+echo "--- Updating anything list ---"
+apt-get dist-upgrade -y
 
 echo "--- Installing base packages ---"
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
@@ -36,3 +36,4 @@ apt-get install
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 apt-get update && apt-get dist-upgrade -y
 apt-get -y install postgresql-9.4
+sed -i 's/peer/trust/' /etc/postgresql/9.4/main/pg_hba.conf
