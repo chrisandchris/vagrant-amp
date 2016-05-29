@@ -25,7 +25,7 @@
           "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
         }
       },
-      "only": "virtualbox-iso"
+      "only": ["virtualbox-iso"]
     },
     {
       "type": "shell",
@@ -43,7 +43,7 @@
           "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
         }
       },
-      "only": "qemu"
+      "only": ["qemu"]
     }
   ],
   "builders": [
