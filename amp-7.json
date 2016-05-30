@@ -119,7 +119,7 @@
         "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
         "artifact_type": "vagrant.box",
         "metadata": {
-          "version": "4",
+          "version": "5",
           "provider": "virtualbox"
         }
       },
@@ -131,7 +131,7 @@
         "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
         "artifact_type": "vagrant.box",
         "metadata": {
-          "version": "4",
+          "version": "5",
           "provider": "libvirt"
         }
       }

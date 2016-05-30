@@ -10,7 +10,7 @@ echo "--- Installing base packages ---"
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 apt-get install -y vim curl python-software-properties dpkg-dev wget ca-certificates \
-    git-core mysql-server-5.5 python-software-properties software-properties-common htop
+    git-core mysql-server-5.5 python-software-properties software-properties-common htop realpath
 
 curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -
 apt-get update

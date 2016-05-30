@@ -93,12 +93,13 @@ end script
 
 EOF
 
-echo "--- Updating again everything, set hostname ---"
+echo "--- Updating again everything, set hostname, finish some stuff ---"
 apt-get update && apt-get dist-upgrade -y
 echo "amp" > /etc/hostname
 sed -i.old '/^.*packer.*$/d' /etc/hosts
 cat << EOF >> /etc/hosts
 127.0.0.1   amp
 EOF
+locale-gen
 
 echo "--- All done, enjoy! :) ---"
