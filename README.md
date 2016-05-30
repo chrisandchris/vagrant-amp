@@ -4,6 +4,9 @@ A nice *Apache, MySQL, PHP, PgSQL*-Stack for Vagrant. Pretty good variety of mod
 Misses nothing, it's your fully-featured dev environment ready in a sec.
 
 ##  Usage
+
+We support *libvirt* and *virtualbox* as provider!
+
 ```
 # There's a vvguest installed, but make sure it matches your installation
 vagrant plugin install vagrant-vbguest
