@@ -15,7 +15,7 @@
         "scripts/virtualbox.sh",
         "scripts/vagrant.sh",
         "scripts/dep-any-before.sh",
-        "scripts/dep-7.sh",
+        "scripts/dep-5.6.sh",
         "scripts/dep-any-after.sh",
         "scripts/cleanup.sh",
         "scripts/zerodisk.sh"
@@ -34,7 +34,7 @@
         "scripts/virtualbox.sh",
         "scripts/vagrant.sh",
         "scripts/dep-any-before.sh",
-        "scripts/dep-7.sh",
+        "scripts/dep-5.6.sh",
         "scripts/dep-any-after.sh",
         "scripts/cleanup.sh"
       ],
@@ -120,7 +120,7 @@
         "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
         "artifact_type": "vagrant.box",
         "metadata": {
-          "version": "4",
+          "version": "5",
           "provider": "virtualbox"
         }
       },
@@ -132,7 +132,7 @@
         "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
         "artifact_type": "vagrant.box",
         "metadata": {
-          "version": "4",
+          "version": "5",
           "provider": "libvirt"
         }
       }
