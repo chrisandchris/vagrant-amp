@@ -40,7 +40,7 @@ sed -i 's/peer/trust/' /etc/postgresql/9.4/main/pg_hba.conf
 sed -i 's/peer/trust/' /etc/postgresql/9.3/main/pg_hba.conf
 # create database "vagrant" in 9.3
 echo "CREATE ROLE vagrant LOGIN ENCRYPTED PASSWORD 'vagrant';" | sudo -u postgres psql -p 5433
-sudo -u postgres createdb vagrant --owner root -p 5433
+sudo -u postgres createdb vagrant --owner vagrant -p 5433
 # create database "vagrant" in 9.4
 echo "CREATE ROLE vagrant LOGIN ENCRYPTED PASSWORD 'vagrant';" | sudo -u postgres psql -p 5432
-sudo -u postgres createdb vagrant --owner root -p 5432
+sudo -u postgres createdb vagrant --owner vagrant -p 5432
