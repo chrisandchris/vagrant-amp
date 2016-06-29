@@ -2,12 +2,12 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-    config.vm.define "amp-7" do |amp7|
+    config.vm.define "amp7" do |amp7|
         amp7.vm.box = "tmp/amp-7"
         amp7.vm.network "private_network", type: "dhcp"
         amp7.vm.synced_folder ".", "/vagrant", type: "rsync"
     end
-    config.vm.define "amp-5.6" do |amp|
+    config.vm.define "amp" do |amp|
         amp.vm.box = "tmp/amp-5.6"
         amp.vm.network "private_network", type: "dhcp"
         amp.vm.synced_folder ".", "/vagrant", type: "rsync"
