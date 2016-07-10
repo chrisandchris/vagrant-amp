@@ -125,7 +125,7 @@
         "<bs><bs><bs>",
         "auto preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
         "debian-installer=en_US locale=en_US kbd-chooser/method=us ",
-        "hostname=rails-5-jade ",
+        "hostname=vagrant",
         "fb=false debconf/frontend=noninteractive ",
         "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
         "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
