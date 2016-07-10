@@ -1,6 +1,13 @@
 # Changelog
 Both versions, amp7 and amp5.6, are developed simultaneously.
 
+## v7 (only amp7 stack)
+- upgraded to Ubuntu 16.04 LTS
+
+## v6
+- added PgSQL 9.3
+- added a default database to both PgSQL 9.3 and 9.4
+
 ## v5
 - added realpath, locale-gen
 - improved bash_profile script insertion

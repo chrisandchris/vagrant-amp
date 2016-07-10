@@ -21,6 +21,8 @@ See: https://atlas.hashicorp.com/chrisandchris/boxes/amp and https://atlas.hashi
 ## Specification
 The boxes consist of:
 
+*When using the amp-Stack, you have Ubuntu 14.04 LTS. When using the amp7-Stack, you have Ubuntu 16.04 LTS.*
+
 - Apache 2.4
     - Enabled both HTTP and HTTPS
     - using a self-signed certificate for ssl connections (generated on boot if not yet done)
