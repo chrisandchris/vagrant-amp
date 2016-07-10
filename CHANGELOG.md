@@ -2,7 +2,7 @@
 Both versions, amp7 and amp5.6, are developed simultaneously.
 
 ## v7 (only amp7 stack)
-- upgraded to Ubuntu 16.04 LTS
+- added missing xDebug configuration for Apache
 
 ## v6
 - added PgSQL 9.3
