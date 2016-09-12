@@ -26,7 +26,7 @@ done
 
 declare -a cmds=(
     "rm -rf output-virtualbox-iso"
-    "packer build -only=qemu \"$1.json\""
+    "packer build -only=virtualbox-iso \"$1.json\""
     "vagrant box add packer_virtualbox-iso_virtualbox.box --name=\"tmp/$1\" --force"
     "rm -rf packer_cache/*"
     "rm -rf output-virtualbox-iso/*"

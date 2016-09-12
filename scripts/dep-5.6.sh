@@ -18,3 +18,10 @@ xdebug.remote_connect_back=1
 xdebug.remote_port=9000
 xdebug.remote_log=/tmp/xdebug.log
 xdebug.max_nesting_level=512" >> /etc/php5/apache2/conf.d/20-xdebug.ini
+echo "
+xdebug.remote_enable=1
+xdebug.profiler_enable=0
+xdebug.remote_connect_back=1
+xdebug.remote_port=9000
+xdebug.remote_log=/tmp/xdebug.log
+xdebug.max_nesting_level=512" >> /etc/php5/cli/conf.d/20-xdebug.ini

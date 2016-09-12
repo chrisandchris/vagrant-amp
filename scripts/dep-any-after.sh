@@ -62,7 +62,7 @@ echo "--- Installing aliases, default config, and some tools ---"
 #
 # export HOST=$(echo `ifconfig eth0 2>/dev/null|awk '/inet addr:/ {print $2}'|sed 's/addr://'` | sed "s/\([0-9]\+\)\.\([0-9]\+\)\.\([0-9]\+\)\.\([0-9]\+\)/\1\.\2\.\3\.2/")
 # alias phpx="php -dxdebug.remote_host=\$HOST -dxdebug.remote_autostart=1"
-# alias phpunitx="./vendor/phpunit/phpunit/phpunit  -dxdebug.remote_host=\$HOST -dxdebug.remote_autostart=1"
+# alias phpunitx="./vendor/phpunit/phpunit/phpunit -dxdebug.remote_host=\$HOST -dxdebug.remote_autostart=1"
 # alias phpunit="./vendor/phpunit/phpunit/phpunit"
 # alias ll="ls -al"
 # export XDEBUG_CONFIG="idekey=vagrant"
@@ -73,9 +73,9 @@ YWRkcjovIHtwcmludCAkMn0nfHNlZCAncy9hZGRyOi8vJ2AgfCBzZWQgInMvXChbMC05XVwrXClc
 LlwoWzAtOV1cK1wpXC5cKFswLTldXCtcKVwuXChbMC05XVwrXCkvXDFcLlwyXC5cM1wuMi8iKQph
 bGlhcyBwaHB4PSJwaHAgLWR4ZGVidWcucmVtb3RlX2hvc3Q9XCRIT1NUIC1keGRlYnVnLnJlbW90
 ZV9hdXRvc3RhcnQ9MSIKYWxpYXMgcGhwdW5pdHg9Ii4vdmVuZG9yL3BocHVuaXQvcGhwdW5pdC9w
-aHB1bml0ICAtZHhkZWJ1Zy5yZW1vdGVfaG9zdD1cJEhPU1QgLWR4ZGVidWcucmVtb3RlX2F1dG9z
-dGFydD0xIgphbGlhcyBwaHB1bml0PSIuL3ZlbmRvci9waHB1bml0L3BocHVuaXQvcGhwdW5pdCIK
-YWxpYXMgbGw9ImxzIC1hbCIKZXhwb3J0IFhERUJVR19DT05GSUc9ImlkZWtleT12YWdyYW50IgoK
+aHB1bml0IC1keGRlYnVnLnJlbW90ZV9ob3N0PVwkSE9TVCAtZHhkZWJ1Zy5yZW1vdGVfYXV0b3N0
+YXJ0PTEiCmFsaWFzIHBocHVuaXQ9Ii4vdmVuZG9yL3BocHVuaXQvcGhwdW5pdC9waHB1bml0Igph
+bGlhcyBsbD0ibHMgLWFsIgpleHBvcnQgWERFQlVHX0NPTkZJRz0iaWRla2V5PXZhZ3JhbnQi
 EOF
 # mysql backup script
 cat << EOF > /home/vagrant/backup_mysql.sh
