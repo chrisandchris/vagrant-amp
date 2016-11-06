@@ -1,6 +1,9 @@
 # Changelog
 Both versions, amp7 and amp5.6, are developed simultaneously.
 
+## v8 (only amp stack)
+- updated ppa url for php
+
 ## v7 (only amp7 stack)
 - added missing xDebug configuration for Apache
 
