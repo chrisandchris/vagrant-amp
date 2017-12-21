@@ -1,4 +1,7 @@
 # AMPP-Stack for Vagrant
+
+*WARNING*: This repository was abandoned as I moved most/all of my stuff to Docker. Use at your own risk.
+
 A nice *Apache, MySQL, PHP, PgSQL*-Stack for Vagrant. Pretty good variety of modules and tools that are pre-installed. Backups your databases (mysql) up on shutdown. Has Git, NodeJS, NPM, Gulp installed and configured. Provides an SSL-VirtualHost for Apache using an automated generated self-signed cert.
 
 Misses nothing, it's your fully-featured dev environment ready in a few seconds.
